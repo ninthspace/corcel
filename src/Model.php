@@ -116,7 +116,8 @@ class Model extends Eloquent
      * @param string $relation
      * @return BelongsToMany
      */
-    public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
+    public function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $parentKey = null,
+                              $relatedKey = null, $relation = null)
     {
         if (is_null($relation)) {
             $relation = $this->getRelations();
@@ -139,7 +140,7 @@ class Model extends Eloquent
 
         $query = $instance->newQuery();
 
-        return new BelongsToMany($query, $this, $table, $foreignKey, $otherKey, $relation);
+        return new BelongsToMany($query, $this, $table, $foreignKey, $otherKey, $parentKey, $relatedKey, $relation);
     }
 
     /**
